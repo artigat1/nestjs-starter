@@ -1,13 +1,17 @@
 ////// hello.module.ts //////
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
+
 import { HelloService } from './hello.service';
 import { HelloController } from './hello.controller';
+import { ByeService } from './bye.service';
+import { HiModule } from '@/hi/hi.module';
 
 @Module({
+  imports: [forwardRef(() => HiModule)],
   /* put all providers that is under this module graph to help Nest to
 		 inject those in the controllers
   */
-  providers: [HelloService],
+  providers: [HelloService, ByeService],
   /* put controllers here for letting Nest recognize all the route/path &
      their handlers
 	*/
@@ -15,6 +19,6 @@ import { HelloController } from './hello.controller';
   /*put those providers which you wanna use outside of this module
     In an outside module when HelloModule gets imported
   */
-  exports: [],
+  exports: [HelloService],
 })
 export class HelloModule {}

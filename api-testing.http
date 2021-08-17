@@ -1,0 +1,28 @@
+POST http://localhost:3000/hello
+Content-Type: application/json
+Authorization: Bearer ste-jwt-token
+
+{
+  "message": "hello Steve!"
+}
+
+### 
+
+POST http://localhost:3000/hello
+Content-Type: application/json
+Authorization: Bearer wrong-token
+
+{
+"message": "hello Steve!"
+}
+
+###
+
+GET http://localhost:3000/hello/95d474a4-0b45-4862-8661-3b7adfd75baa
+Accept: application/json
+Authorization: Bearer ste-jwt-token
+
+###
+
+GET http://localhost:3000/hello
+Accept: application/json
